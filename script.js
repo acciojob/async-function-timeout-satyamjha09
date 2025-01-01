@@ -1,40 +1,34 @@
 const submit = document.getElementById("btn");
 
 submit.addEventListener("click", async () => {
-  // Retrieve input values
   const textInput = document.getElementById("text").value.trim();
   const delayInput = document.getElementById("delay").value.trim();
   const output = document.getElementById("output");
 
-  // Clear previous output
+  // Clear previous output immediately
   output.innerHTML = "";
 
   // Validate inputs
-  if (!textInput) {
-    output.innerHTML = "Please enter some text.";
+  if (!textInput || isNaN(delayInput) || Number(delayInput) < 0) {
+    output.innerHTML = "Invalid input. Please try again.";
     return;
   }
 
-  if (!delayInput || isNaN(delayInput) || Number(delayInput) < 0) {
-    output.innerHTML = "Please enter a valid delay in seconds.";
-    return;
-  }
-
-  // Convert delay to seconds
-  const delayInSeconds = Number(delayInput);
+  // Convert delay to milliseconds
+  const delayInMilliseconds = Number(delayInput) * 1000;
 
   // Delay function using Promise
-  const delayFunction = (seconds) =>
-    new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+  const delayFunction = (milliseconds) =>
+    new Promise((resolve) => setTimeout(resolve, milliseconds));
 
   try {
-    // Await the delay in seconds
-    await delayFunction(delayInSeconds);
+    // Wait for the specified delay
+    await delayFunction(delayInMilliseconds);
 
-    // Display the text
+    // Update the output after the delay
     output.innerHTML = textInput;
   } catch (error) {
     console.error("Error occurred:", error);
-    output.innerHTML = "An unexpected error occurred.";
+    output.innerHTML = "An error occurred. Please try again.";
   }
 });
