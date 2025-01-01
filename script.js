@@ -1,35 +1,29 @@
-const submit = document.getElementById("btn");
 
-submit.addEventListener("click", async () => {
-  // Get input values
-  const textInput = document.getElementById("text").value.trim();
-  const delayInput = document.getElementById("delay").value.trim();
-  const output = document.getElementById("output");
 
-  // Clear any previous output
-  output.innerHTML = "";
 
-  // Validate inputs
-  if (!textInput) {
-    output.innerHTML = "Please enter some text.";
-    return;
-  }
-  if (!delayInput || isNaN(delayInput) || delayInput < 0) {
-    output.innerHTML = "Please enter a valid delay in milliseconds.";
-    return;
-  }
+const Delay = document.getElementById("delay");
 
-  // Async function to handle delay
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const sumbit = document.getElementById("btn");
 
-  try {
-    // Wait for the specified delay
-    await delay(Number(delayInput));
+sumbit.addEventListener("click" , () => {
 
-    // Display the text
-    output.innerHTML = textInput;
-  } catch (error) {
-    console.error("Error occurred:", error);
-    output.innerHTML = "An error occurred.";
-  }
-});
+    
+
+    const Text = document.getElementById("text");
+    const Number = document.getElementById("delay").value.trim();
+
+    let timer = parseInt(Number);
+
+
+    const Output = document.getElementById("output");
+
+    Output.innerHTML = "";
+
+
+    setTimeout(() => {
+        Output.innerHTML = Text.value.trim();
+    }, timer * 1000)
+
+    
+
+})
