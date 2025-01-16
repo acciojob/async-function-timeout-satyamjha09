@@ -1,34 +1,28 @@
-const submit = document.getElementById("btn");
 
-submit.addEventListener("click", async () => {
-  const textInput = document.getElementById("text").value.trim();
-  const delayInput = document.getElementById("delay").value.trim();
-  const output = document.getElementById("output");
 
-  // Clear previous output immediately
-  output.innerHTML = "";
+const sumbit = document.getElementById("btn");
 
-  // Validate inputs
-  if (!textInput || isNaN(delayInput) || Number(delayInput) < 0) {
-    output.innerHTML = "Invalid input. Please try again.";
-    return;
-  }
+sumbit.addEventListener("click" , async () => {
+	const Output = document.getElementById("output");
+	const Text = document.getElementById("text").value;
+	const Delay = document.getElementById("delay").value;
 
-  // Convert delay to milliseconds
-  const delayInMilliseconds = Number(delayInput) * 1000;
+	let data;
 
-  // Delay function using Promise
-  const delayFunction = (milliseconds) =>
-    new Promise((resolve) => setTimeout(resolve, milliseconds));
-
-  try {
-    // Wait for the specified delay
-    await delayFunction(delayInMilliseconds);
-
-    // Update the output after the delay
-    output.innerHTML = textInput;
-  } catch (error) {
-    console.error("Error occurred:", error);
-    output.innerHTML = "An error occurred. Please try again.";
-  }
-});
+	try{
+		if(Delay == 1){
+			await setTimeout(() => {
+			   Output.innerHTML = "Test - 1."
+			}, 1000)
+			
+		}else if(Delay == 2){
+			await setTimeout(() => {
+			   Output.innerHTML = "Test - 2"
+			}, 2000)
+		}
+		
+	}catch(error){
+		
+	}
+	
+})
