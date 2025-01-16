@@ -1,28 +1,20 @@
+  function wait(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
 
+    // Add an event listener to the button
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', async function() {
+      // 1. Get input values
+      const textValue = document.getElementById('text').value;
+      const delayValue = Number(document.getElementById('delay').value);
 
-const sumbit = document.getElementById("btn");
+      // 2. Await the specified delay
+      await wait(delayValue);
 
-sumbit.addEventListener("click" , async () => {
-	const Output = document.getElementById("output");
-	const Text = document.getElementById("text").value;
-	const Delay = document.getElementById("delay").value;
-
-	let data;
-
-	try{
-		if(Delay == 1){
-			await setTimeout(() => {
-			   Output.innerHTML = "Test - 1."
-			}, 1000)
-			
-		}else if(Delay == 2){
-			await setTimeout(() => {
-			   Output.innerHTML = "Test - 2"
-			}, 2000)
-		}
-		
-	}catch(error){
-		
-	}
-	
-})
+      // 3. Display the text in the 'output' div
+      const outputDiv = document.getElementById('output');
+      outputDiv.textContent = textValue;
+    });
