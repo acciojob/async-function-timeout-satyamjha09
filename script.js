@@ -1,5 +1,6 @@
-  function wait(ms) {
-      return new Promise((resolve) => {
+// Utility function that returns a Promise which resolves after 'ms' milliseconds
+    function wait(ms) {
+      return new Promise(resolve => {
         setTimeout(resolve, ms);
       });
     }
