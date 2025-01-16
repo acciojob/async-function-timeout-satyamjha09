@@ -1,21 +1,29 @@
 // Utility function that returns a Promise which resolves after 'ms' milliseconds
-    function wait(ms) {
-      return new Promise(resolve => {
-        setTimeout(resolve, ms);
-      });
-    }
+function wait(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
-    // Add an event listener to the button
-    const btn = document.getElementById('btn');
-    btn.addEventListener('click', async function() {
-      // 1. Get input values
-      const textValue = document.getElementById('text').value;
-      const delayValue = Number(document.getElementById('delay').value);
+// Once the DOM is loaded, set up the click handler
+document.addEventListener('DOMContentLoaded', () => {
+  const textInput = document.getElementById('text');
+  const delayInput = document.getElementById('delay');
+  const outputDiv = document.getElementById('output');
+  const submitButton = document.getElementById('btn');
 
-      // 2. Await the specified delay
-      await wait(delayValue);
+  submitButton.addEventListener('click', async () => {
+    // Immediately clear the output to ensure it starts out empty
+    outputDiv.textContent = "";
 
-      // 3. Display the text in the 'output' div
-      const outputDiv = document.getElementById('output');
-      outputDiv.textContent = textValue;
-    });
+    // Get user-provided values
+    const textValue = textInput.value;
+    const delayValue = Number(delayInput.value);
+
+    // Wait for the specified delay
+    await wait(delayValue);
+
+    // Display the text
+    outputDiv.textContent = textValue;
+  });
+});
